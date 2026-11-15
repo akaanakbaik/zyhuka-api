@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import apiCatalog from './data/endpoints.json';
 
 const DEMO_BASE = 'https://api.example.invalid';
 const navItems = [
@@ -85,13 +84,13 @@ function Footer({ navigate }) {
         <InternalLink to="/terms" navigate={navigate}>Terms · draft</InternalLink>
         <InternalLink to="/privacy" navigate={navigate}>Privacy · draft</InternalLink>
       </div>
-      <div className="footer-powered"><span className="footer-label">Project mode</span><div className="powered-card"><span className="powered-dot"/><span><b>Offline UI preview</b><small>No API calls · sample data</small></span><Icon name="code" size={14}/></div></div>
+      <div className="footer-powered"><span className="footer-label">Project mode</span><div className="powered-card"><span className="powered-dot"/><span><b>Local UI demo</b><small>No API calls · sample data</small></span><Icon name="code" size={14}/></div></div>
     </div>
     <div className="footer-bottom"><span>© 2026 Zyhuka · Frontend demo only</span><div><InternalLink to="/privacy" navigate={navigate}>Privacy draft</InternalLink><span className="footer-divider">/</span><InternalLink to="/terms" navigate={navigate}>Terms draft</InternalLink></div><span className="footer-region"><i/> Local sample mode</span></div>
   </footer>;
 }
 const faqItems = [
-  { q: 'Apakah ini API live?', tag: 'Demo only', a: 'Bukan. Zyhuka adalah frontend preview; tidak ada backend atau request jaringan yang dijalankan.' },
+  { q: 'Apakah ini API live?', tag: 'Demo only', a: 'Bukan. Zyhuka adalah frontend demo tanpa backend dan tanpa panggilan API/upstream. Aset situs tetap dimuat dari host ini.' },
   { q: 'Apa isi katalog Playground?', tag: 'Sample data', a: 'Katalog berisi contoh 197 path dengan operasi GET/POST untuk memperagakan pencarian, filter, form, dan detail endpoint.' },
   { q: 'Apa yang dilakukan tombol simulasi?', tag: 'Local mock', a: 'Tombol menampilkan respons contoh di browser. Tidak menghubungi API atau server mana pun.' },
   { q: 'Apakah angka Monitor live?', tag: 'Illustrative', a: 'Tidak. Seluruh angka, grafik, dan event Monitor adalah data sample statis yang ditandai sebagai demo.' },
@@ -101,7 +100,7 @@ const faqItems = [
 function HomePage({ navigate }) {
   const [openFaq, setOpenFaq] = useState(0);
   const features = [
-    { icon: 'zap', title: 'Local simulation', text: 'Interaksi form dan respons contoh diproses di browser tanpa request jaringan.' },
+    { icon: 'zap', title: 'Local simulation', text: 'Form dan respons contoh diproses di browser tanpa panggilan API; aset situs tetap dimuat dari host ini.' },
     { icon: 'shield', title: 'Sample catalog', text: 'Jelajahi 197 path contoh dengan operasi GET/POST untuk mengecek struktur UI.' },
     { icon: 'globe', title: 'No backend', text: 'Project ini tidak terhubung ke layanan API. Semua endpoint dan respons hanya contoh.' },
     { icon: 'chart', title: 'Sample monitor', text: 'Grafik dan metrik statis diberi label sample; tidak ada status layanan live.' },
@@ -114,7 +113,7 @@ function HomePage({ navigate }) {
         <div className="hero-copy">
           <div className="eyebrow"><span className="eyebrow-dot"/> FRONTEND UI PREVIEW · SAMPLE MODE <span className="eyebrow-line"/></div>
           <h1>NO BACKEND.<br/><span>NO LIVE DATA.</span><br/>JUST PURE <em>UI.</em></h1>
-          <p className="hero-lede">Zyhuka adalah replika frontend untuk mengeksplorasi layout API console. Form, katalog, dan respons di sini hanya contoh lokal; tidak ada request jaringan.</p>
+          <p className="hero-lede">Zyhuka adalah replika frontend untuk mengeksplorasi layout API console. Form dan respons hanya contoh lokal; tidak ada panggilan API/upstream, sementara aset situs tetap dimuat.</p>
           <div className="hero-actions">
             <button className="button button-primary" onClick={() => navigate('/playground')}>Browse endpoints <Icon name="arrow" size={16}/></button>
             <InternalLink to="/playground" navigate={navigate} className="button button-quiet"><Icon name="code" size={17}/> View API directory</InternalLink>
@@ -125,10 +124,10 @@ function HomePage({ navigate }) {
           <div className="art-halo"/>
           <div className="code-card card-back"><span className="mini-pulse"/> LOCAL UI <span className="green-text">SAMPLE ONLY</span></div>
           <div className="terminal-window">
-            <div className="terminal-titlebar"><div className="window-dots"><i/><i/><i/></div><span>request.preview</span><span className="terminal-live"><i/> OFFLINE DEMO</span></div>
+            <div className="terminal-titlebar"><div className="window-dots"><i/><i/><i/></div><span>request.preview</span><span className="terminal-live"><i/> LOCAL DEMO</span></div>
             <div className="terminal-body"><div className="terminal-label">// SAMPLE REQUEST · NOT SENT</div><div><span className="code-method">GET</span> <span className="code-muted">https://api.example.invalid</span></div><div className="code-route">/api/ai/duckai</div><div className="terminal-separator"/><div className="json-line"><span className="json-punc">{ '{' }</span></div><div className="json-line indent"><span className="json-key">"status"</span><span className="json-punc">:</span> <span className="json-value">"sample"</span><span className="json-punc">,</span></div><div className="json-line indent"><span className="json-key">"data"</span><span className="json-punc">:</span> <span className="json-value">"Demo payload"</span></div><div className="json-line"><span className="json-punc">{ '}' }</span></div><div className="terminal-meta"><span>SAMPLE</span><span>·</span><span>LOCAL MOCK</span></div></div>
           </div>
-          <div className="floating-tag tag-top"><span className="tag-icon"><Icon name="zap" size={15}/></span><span><b>Local simulation</b><small>No network request</small></span></div>
+          <div className="floating-tag tag-top"><span className="tag-icon"><Icon name="zap" size={15}/></span><span><b>Local simulation</b><small>No API request</small></span></div>
           <div className="floating-tag tag-bottom"><span className="tag-icon tag-icon-blue"><Icon name="code" size={16}/></span><span><b>394 demo operations</b><small>GET + POST sample forms</small></span><span className="tag-arrow"><Icon name="arrow" size={14}/></span></div>
           <div className="art-coordinate">API / OPEN / 01</div>
         </div>
@@ -147,7 +146,7 @@ function HomePage({ navigate }) {
 
     <section className="section-shell faq-section"><div className="section-heading faq-heading"><div><span className="eyebrow-small">GOOD TO KNOW</span><h2>Questions,<br/><span>answered.</span></h2></div><p>Semua interaksi dalam preview ini tetap lokal; tidak ada komunitas atau layanan live yang terhubung.</p></div><div className="faq-list">{faqItems.map((item, index) => <article className={`faq-item ${openFaq === index ? 'is-open' : ''}`} key={item.q}><button className="faq-question" aria-expanded={openFaq === index} onClick={() => setOpenFaq(openFaq === index ? -1 : index)}><span className="faq-number">0{index + 1}</span><span className="faq-title">{item.q}</span><span className="faq-tag">{item.tag}</span><span className="faq-toggle"><Icon name="plus" size={16}/></span></button>{openFaq === index && <div className="faq-answer"><p>{item.a}</p>{index === 4 && <button onClick={() => navigate('/privacy')}>Read privacy policy <Icon name="arrow" size={14}/></button>}</div>}</article>)}</div></section>
 
-    <section className="powered-section"><div className="section-shell powered-inner"><div><span className="eyebrow-small">SAMPLE MODE</span><h2>One frontend.<br/><span>No backend.</span></h2></div><p>Catalog, responses, charts, and monitor values are illustrative local data. This project does not contact an API or provide a live service.</p><div className="partner-lockup"><div className="powered-card"><span className="powered-dot"/><span><b>Offline preview</b><small>394 demo operations</small></span><Icon name="code" size={14}/></div></div></div></section>
+    <section className="powered-section"><div className="section-shell powered-inner"><div><span className="eyebrow-small">SAMPLE MODE</span><h2>One frontend.<br/><span>No backend.</span></h2></div><p>Catalog, responses, charts, and monitor values are illustrative local data. This project does not contact an API or provide a live service.</p><div className="partner-lockup"><div className="powered-card"><span className="powered-dot"/><span><b>Local preview</b><small>394 demo operations</small></span><Icon name="code" size={14}/></div></div></div></section>
   </>;
 }
 
@@ -196,7 +195,7 @@ function RequestPanel({ endpoint }) {
     await new Promise((resolve) => window.setTimeout(resolve, 320));
     const payload = {
       demo: true,
-      message: 'Sample response only. No network request was sent.',
+      message: 'Sample response only. No API request was sent.',
       method: endpoint.method.toUpperCase(),
       path: endpoint.path,
       parameters: values,
@@ -219,14 +218,14 @@ function RequestPanel({ endpoint }) {
     {fields.length > 0 ? <div className="request-fields">{fields.map((field) => <label className="request-field" key={`${field.in}-${field.name}`}><span>{field.name}<i>{field.required ? 'SAMPLE REQUIRED' : field.in.toUpperCase()}</i></span><input value={values[field.name] || ''} onChange={(event) => setValue(field.name, event.target.value)} placeholder={field.description || `Sample value for ${field.name}`} required={field.required}/>{field.description && <small>{field.description}</small>}</label>)}</div> : <div className="no-params"><Icon name="check" size={15}/> This demo operation has no input fields.</div>}
     {showBody && <label className="request-field body-field"><span>SAMPLE REQUEST BODY <i>JSON</i></span><textarea value={body} onChange={(event) => setBody(event.target.value)} placeholder={JSON.stringify(schema?.example || {}, null, 2)} rows={5}/><small>Local sample only; payload stays in this browser page.</small></label>}
     <button className="button button-primary execute-button" disabled={loading} onClick={simulateRequest}><Icon name={loading ? 'clock' : 'play'} size={15}/>{loading ? 'Simulating…' : 'Simulate request'}<span>↵</span></button>
-    <div className="request-note"><Icon name="shield" size={14}/> Local simulation only. No network request is sent.</div>
+    <div className="request-note"><Icon name="shield" size={14}/> Local simulation only. No API request is sent.</div>
     {result && <div className="response-block"><div className="response-heading"><span>DEMO RESPONSE</span><div className="response-ok"><i/>{result.status}</div><small>{result.elapsed} ms · sample</small></div><div className="response-headers"><span>HEADERS · SAMPLE</span><pre>{JSON.stringify(result.headers, null, 2)}</pre></div><pre className="response-output">{JSON.stringify(result.payload, null, 2)}</pre></div>}
     <div className="curl-block"><div className="curl-heading"><span><Icon name="terminal" size={14}/> cURL · EXAMPLE ONLY</span><button onClick={copyCommand}><Icon name={copied ? 'check' : 'copy'} size={13}/>{copied ? 'Copied' : 'Copy'}</button></div><pre>{command}{'\n\n# Example only — .invalid is reserved; this is not executed.'}</pre></div>
     <div className="request-footer"><span>RESERVED DEMO HOST</span><code>{DEMO_BASE}</code></div>
   </aside>;
 }
-function PlaygroundPage() {
-  const endpoints = apiCatalog.endpoints || [];
+function PlaygroundPage({ catalog }) {
+  const endpoints = catalog.endpoints || [];
   const categoryCounts = useMemo(() => {
     const counts = new Map();
     for (const endpoint of endpoints) counts.set(endpoint.category, (counts.get(endpoint.category) || 0) + 1);
@@ -234,9 +233,9 @@ function PlaygroundPage() {
   }, [endpoints]);
   const [selected, setSelected] = useState(endpoints[0] || null);
   return <div className="page-shell playground-page">
-    <div className="page-intro playground-intro"><div><span className="eyebrow-small">OFFLINE WORKSPACE <i/> SAMPLE DATA</span><h1>API <span>Console.</span></h1><p>Jelajahi 197 path contoh / 394 operasi GET dan POST. Form dan respons disimulasikan lokal, tanpa koneksi API.</p></div><div className="catalog-stat"><span className="stat-status-dot"/><b>{endpoints.length}</b><span>DEMO OPS<br/>LOCAL SAMPLE</span></div></div>
+    <div className="page-intro playground-intro"><div><span className="eyebrow-small">LOCAL WORKSPACE <i/> SAMPLE DATA</span><h1>API <span>Console.</span></h1><p>Jelajahi 197 path contoh / 394 operasi GET dan POST. Form dan respons disimulasikan lokal, tanpa koneksi API.</p></div><div className="catalog-stat"><span className="stat-status-dot"/><b>{endpoints.length}</b><span>DEMO OPS<br/>LOCAL SAMPLE</span></div></div>
     <div className="playground-grid"><EndpointBrowser endpoints={endpoints} categories={categoryCounts} selected={selected} onSelect={setSelected}/><RequestPanel endpoint={selected}/></div>
-    <div className="playground-bottom-note"><Icon name="shield" size={14}/><span>Data katalog hanya contoh; tidak ada request jaringan. Baca <a href="/terms" onClick={(event) => {event.preventDefault(); window.history.pushState({}, '', '/terms'); window.dispatchEvent(new PopStateEvent('popstate')); window.scrollTo(0,0);}}>ketentuan layanan</a>.</span><span>394 OPERATIONS · DEMO ONLY</span></div>
+    <div className="playground-bottom-note"><Icon name="shield" size={14}/><span>Data katalog hanya contoh; tidak ada panggilan API. File katalog statis dimuat dari host ini. Baca <a href="/terms" onClick={(event) => {event.preventDefault(); window.history.pushState({}, '', '/terms'); window.dispatchEvent(new PopStateEvent('popstate')); window.scrollTo(0,0);}}>ketentuan layanan</a>.</span><span>394 OPERATIONS · DEMO ONLY</span></div>
   </div>;
 }
 
@@ -251,9 +250,9 @@ function MonitorPage() {
   ];
   return <div className="page-shell monitor-page">
     <div className="page-intro monitor-intro"><div><span className="eyebrow-small">SAMPLE SYSTEM OVERVIEW <i/></span><h1>Network <span>monitor.</span></h1><p>UI preview dengan metrik dan grafik contoh. Tidak ada backend atau telemetry live.</p></div><span className="demo-indicator"><i/> SAMPLE DATA · NOT LIVE</span></div>
-    <div className="monitor-notice"><span className="notice-icon"><Icon name="wifi" size={18}/></span><div><b>Seluruh angka di halaman ini adalah data demo.</b><p>Nilai, status, grafik, dan event bersifat ilustratif dan tidak menggambarkan layanan operasional apa pun.</p></div><span className="sample-pill">NO NETWORK</span></div>
+    <div className="monitor-notice"><span className="notice-icon"><Icon name="wifi" size={18}/></span><div><b>Seluruh angka di halaman ini adalah data demo.</b><p>Nilai, status, grafik, dan event bersifat ilustratif dan tidak menggambarkan layanan operasional apa pun.</p></div><span className="sample-pill">NO API CALLS</span></div>
     <div className="monitor-stat-grid">{stats.map((item) => <article className="monitor-stat-card" key={item.label}><div className="monitor-stat-top"><span>{item.label}</span><Icon name={item.icon} size={15}/></div><b>{item.value}</b><small>{item.sub}</small></article>)}</div>
-    <div className="monitor-dashboard-grid"><article className="monitor-panel traffic-panel"><div className="monitor-panel-heading"><div><span className="eyebrow-small">SAMPLE TRAFFIC</span><h2>Request history</h2></div><span className="sample-pill">ILLUSTRATIVE DATA</span></div><MiniBarChart/><p className="chart-caption">Grafik statis untuk demonstrasi layout — bukan telemetry live.</p></article><article className="monitor-panel health-panel"><div className="monitor-panel-heading"><div><span className="eyebrow-small">SAMPLE STATUS</span><h2>Component status</h2></div><span className="sample-pill">DEMO</span></div><div className="component-row"><span className="component-icon"><Icon name="server" size={16}/></span><span><b>Demo API surface</b><small>Sample state only · no backend</small></span><i className="status-neutral">DEMO</i></div><div className="component-row"><span className="component-icon"><Icon name="globe" size={16}/></span><span><b>Network activity</b><small>No network connection</small></span><i className="status-neutral">OFF</i></div><div className="component-row"><span className="component-icon"><Icon name="code" size={16}/></span><span><b>Sample catalog</b><small>Static local JSON</small></span><i className="status-connected">LOCAL</i></div></article></div>
+    <div className="monitor-dashboard-grid"><article className="monitor-panel traffic-panel"><div className="monitor-panel-heading"><div><span className="eyebrow-small">SAMPLE TRAFFIC</span><h2>Request history</h2></div><span className="sample-pill">ILLUSTRATIVE DATA</span></div><MiniBarChart/><p className="chart-caption">Grafik statis untuk demonstrasi layout — bukan telemetry live.</p></article><article className="monitor-panel health-panel"><div className="monitor-panel-heading"><div><span className="eyebrow-small">SAMPLE STATUS</span><h2>Component status</h2></div><span className="sample-pill">DEMO</span></div><div className="component-row"><span className="component-icon"><Icon name="server" size={16}/></span><span><b>Demo API surface</b><small>Sample state only · no backend</small></span><i className="status-neutral">DEMO</i></div><div className="component-row"><span className="component-icon"><Icon name="globe" size={16}/></span><span><b>API requests</b><small>No API calls are made by this demo.</small></span><i className="status-neutral">OFF</i></div><div className="component-row"><span className="component-icon"><Icon name="code" size={16}/></span><span><b>Sample catalog</b><small>Static local JSON</small></span><i className="status-connected">LOCAL</i></div></article></div>
     <div className="monitor-bottom-grid"><article className="monitor-panel"><div className="monitor-panel-heading"><div><span className="eyebrow-small">SAMPLE ACTIVITY</span><h2>Example events</h2></div><span className="sample-pill">NOT REAL REQUESTS</span></div><div className="demo-events"><div className="demo-event-row"><span className="method-pill">GET</span><code>/demo/weather</code><b>200</b><small>42 ms · sample</small></div><div className="demo-event-row"><span className="method-pill method-post">POST</span><code>/demo/translate</code><b>200</b><small>87 ms · sample</small></div><div className="demo-event-row"><span className="method-pill">GET</span><code>/demo/search</code><b>200</b><small>31 ms · sample</small></div></div></article><article className="monitor-panel uptime-panel"><span className="eyebrow-small">DEMO NODE COUNT · NOT UPTIME</span><div className="uptime-gauge"><div className="gauge-ring"><span>03<small>DEMO</small></span></div><div><b>Illustrative<br/>sample state</b><p>This ring is decorative demo data and makes no availability claim.</p><span className="sample-pill">NOT LIVE</span></div></div></article></div>
   </div>;
 }
@@ -278,11 +277,21 @@ function LegalPage({ type }) {
 export default function App() {
   const [path, setPath] = useState(window.location.pathname.replace(/\/$/, '') || '/');
   const [theme, setTheme] = useState(() => localStorage.getItem('zyhuka-theme') || 'dark');
+  const [catalog, setCatalog] = useState(null);
+  const [catalogError, setCatalogError] = useState(false);
   useEffect(() => {
     const onPopState = () => setPath(window.location.pathname.replace(/\/$/, '') || '/');
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
+  useEffect(() => {
+    if (path !== '/playground' || catalog || catalogError) return;
+    let active = true;
+    import('./data/endpoints.json')
+      .then(({ default: data }) => { if (active) setCatalog(data); })
+      .catch(() => { if (active) setCatalogError(true); });
+    return () => { active = false; };
+  }, [path, catalog, catalogError]);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem('zyhuka-theme', theme);
@@ -298,7 +307,9 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'auto' });
   };
   let page;
-  if (path === '/playground') page = <PlaygroundPage/>;
+  if (path === '/playground') page = catalog
+    ? <PlaygroundPage catalog={catalog}/>
+    : <div className="page-shell"><div className="page-intro"><div><span className="eyebrow-small">LOCAL WORKSPACE · SAMPLE DATA</span><h1>Playground <span>catalog.</span></h1><p role={catalogError ? 'alert' : 'status'}>{catalogError ? 'Katalog sample gagal dimuat dari aset situs ini.' : 'Memuat katalog sample lokal…'}</p>{catalogError && <button className="button button-quiet" onClick={() => setCatalogError(false)}>Coba lagi</button>}</div></div></div>;
   else if (path === '/monitor') page = <MonitorPage/>;
   else if (path === '/terms') page = <LegalPage type="terms"/>;
   else if (path === '/privacy') page = <LegalPage type="privacy"/>;
